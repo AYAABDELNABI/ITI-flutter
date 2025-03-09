@@ -1,0 +1,11 @@
+lib/
+  ├── main.dart
+  ├── models/
+  │   └── movie.dart
+  ├── services/
+  │   └── movie_api_service.dart
+  ├── bloc/
+  │   └── movies_cubit.dart
+  └── screens/
+      ├── home_screen.dart
+      └── movie_detail_screen.dart
