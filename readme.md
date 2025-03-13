@@ -57,4 +57,5 @@ This app uses TheMovieDB API. The demo version includes a sample API key, but fo
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.   
+ 
