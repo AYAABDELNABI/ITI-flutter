@@ -80,35 +80,38 @@ void main() {
       expect(moviesCubit.state, isA<MoviesInitial>());
     });
 
-    test('Emits loading state then loaded state when fetchMovies is called', () async {
-      // Execute fetchMovies
-      final future = moviesCubit.fetchMovies();
-      
-      // Verify state transitions
-      expect(moviesCubit.state, isA<MoviesLoading>());
-      
-      // Wait for fetchMovies to complete
-      await future;
-      
-      // Verify final state
-      expect(moviesCubit.state, isA<MoviesLoaded>());
-      
-      final loadedState = moviesCubit.state as MoviesLoaded;
-      expect(loadedState.nowPlayingMovies.length, 2);
-      expect(loadedState.popularMovies.length, 2);
-      
-      // Verify specific movies
-      expect(loadedState.nowPlayingMovies[0].title, 'Test Movie 1');
-      expect(loadedState.popularMovies[0].title, 'Popular Test Movie 1');
-    });
+    test(
+      'Emits loading state then loaded state when fetchMovies is called',
+      () async {
+        // Execute fetchMovies
+        final future = moviesCubit.fetchMovies();
+
+        // Verify state transitions
+        expect(moviesCubit.state, isA<MoviesLoading>());
+
+        // Wait for fetchMovies to complete
+        await future;
+
+        // Verify final state
+        expect(moviesCubit.state, isA<MoviesLoaded>());
+
+        final loadedState = moviesCubit.state as MoviesLoaded;
+        expect(loadedState.nowPlayingMovies.length, 2);
+        expect(loadedState.popularMovies.length, 2);
+
+        // Verify specific movies
+        expect(loadedState.nowPlayingMovies[0].title, 'Test Movie 1');
+        expect(loadedState.popularMovies[0].title, 'Popular Test Movie 1');
+      },
+    );
 
     test('Emits error state when API calls fail', () async {
       // Create cubit with error service
       final errorCubit = MoviesCubit(apiService: ErrorMovieApiService());
-      
+
       // Execute fetchMovies
       await errorCubit.fetchMovies();
-      
+
       // Verify error state
       expect(errorCubit.state, isA<MoviesError>());
       final errorState = errorCubit.state as MoviesError;
@@ -118,18 +121,18 @@ void main() {
     test('searchMovies filters movies correctly', () async {
       // First load movies
       await moviesCubit.fetchMovies();
-      
+
       // Search for a specific movie
       await moviesCubit.searchMovies('Test Movie 1');
-      
+
       // Verify state
       expect(moviesCubit.state, isA<MoviesLoaded>());
       final loadedState = moviesCubit.state as MoviesLoaded;
-      
+
       // Should only find one movie
       expect(loadedState.nowPlayingMovies.length, 1);
       expect(loadedState.nowPlayingMovies[0].title, 'Test Movie 1');
-      
+
       // Popular movies should be empty as none match
       expect(loadedState.popularMovies.length, 0);
     });
@@ -137,13 +140,13 @@ void main() {
     test('searchMovies with empty query reloads all movies', () async {
       // First load movies
       await moviesCubit.fetchMovies();
-      
+
       // Perform a search to filter
       await moviesCubit.searchMovies('Test Movie 1');
-      
+
       // Then search with empty query
       await moviesCubit.searchMovies('');
-      
+
       // Verify state has all movies again
       expect(moviesCubit.state, isA<MoviesLoaded>());
       final loadedState = moviesCubit.state as MoviesLoaded;

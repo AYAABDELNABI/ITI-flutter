@@ -65,7 +65,9 @@ void main() {
       moviesCubit = MoviesCubit(apiService: MockMovieApiService());
     });
 
-    testWidgets('HomeScreen displays loading state initially', (WidgetTester tester) async {
+    testWidgets('HomeScreen displays loading state initially', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<MoviesCubit>.value(
@@ -83,7 +85,9 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('HomeScreen displays movies when loaded', (WidgetTester tester) async {
+    testWidgets('HomeScreen displays movies when loaded', (
+      WidgetTester tester,
+    ) async {
       // Prepare the cubit with loaded state
       await moviesCubit.fetchMovies();
 
@@ -125,7 +129,9 @@ void main() {
       expect(find.text('Search for movies'), findsOneWidget);
     });
 
-    testWidgets('Bottom navigation bar has three items', (WidgetTester tester) async {
+    testWidgets('Bottom navigation bar has three items', (
+      WidgetTester tester,
+    ) async {
       // Prepare the cubit with loaded state
       await moviesCubit.fetchMovies();
 

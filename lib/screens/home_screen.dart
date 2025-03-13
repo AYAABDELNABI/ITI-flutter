@@ -28,9 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           if (state is MoviesLoading) {
             return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
+              child: CircularProgressIndicator(color: Colors.white),
             );
           } else if (state is MoviesLoaded) {
             return SafeArea(
@@ -51,10 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         CircleAvatar(
                           backgroundColor: Colors.grey[800],
-                          child: const Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
+                          child: const Icon(Icons.person, color: Colors.white),
                         ),
                       ],
                     ),
@@ -67,7 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           // Search Bar
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.grey[900],
                               borderRadius: BorderRadius.circular(30),
@@ -92,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SizedBox(height: 24),
-                          
+
                           // Now Playing Section
                           if (state.nowPlayingMovies.isNotEmpty) ...[
                             const Text(
@@ -106,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             _buildNowPlayingSection(state.nowPlayingMovies),
                             const SizedBox(height: 24),
                           ],
-                          
+
                           // Popular Section
                           if (state.popularMovies.isNotEmpty) ...[
                             const Text(
@@ -161,14 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.white,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Watchlist',
@@ -237,18 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                        size: 16,
-                      ),
+                      const Icon(Icons.star, color: Colors.amber, size: 16),
                       const SizedBox(width: 4),
                       Text(
                         '${movie.voteAverage.toStringAsFixed(1)}/10',
-                        style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[400], fontSize: 14),
                       ),
                     ],
                   ),
@@ -323,19 +307,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 8),
                       Text(
                         'Release: ${movie.releaseDate}',
-                        style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[400], fontSize: 14),
                       ),
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                            size: 16,
-                          ),
+                          const Icon(Icons.star, color: Colors.amber, size: 16),
                           const SizedBox(width: 4),
                           Text(
                             '${movie.voteAverage.toStringAsFixed(1)}/10',

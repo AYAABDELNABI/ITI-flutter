@@ -13,10 +13,7 @@ class MoviesLoaded extends MoviesState {
   final List<Movie> nowPlayingMovies;
   final List<Movie> popularMovies;
 
-  MoviesLoaded({
-    required this.nowPlayingMovies,
-    required this.popularMovies,
-  });
+  MoviesLoaded({required this.nowPlayingMovies, required this.popularMovies});
 }
 
 class MoviesError extends MoviesState {
@@ -38,44 +35,49 @@ class MoviesCubit extends Cubit<MoviesState> {
       final nowPlayingMovies = await apiService.getNowPlayingMovies();
       final popularMovies = await apiService.getPopularMovies();
 
-      emit(MoviesLoaded(
-        nowPlayingMovies: nowPlayingMovies,
-        popularMovies: popularMovies,
-      ));
+      emit(
+        MoviesLoaded(
+          nowPlayingMovies: nowPlayingMovies,
+          popularMovies: popularMovies,
+        ),
+      );
     } catch (e) {
       emit(MoviesError(message: e.toString()));
     }
   }
-  
+
   // Method to search for movies (mock implementation)
   Future<void> searchMovies(String query) async {
     if (query.isEmpty) {
       fetchMovies();
       return;
     }
-    
+
     emit(MoviesLoading());
-    
+
     try {
       // In a real app, you would call a search API endpoint
       // For now, we'll filter our mock data
-      final allMovies = await apiService.getNowPlayingMovies() + await apiService.getPopularMovies();
-      
+      final allMovies =
+          await apiService.getNowPlayingMovies() +
+          await apiService.getPopularMovies();
+
       // Remove duplicates by id
       final Map<int, Movie> uniqueMovies = {};
       for (var movie in allMovies) {
         uniqueMovies[movie.id] = movie;
       }
-      
+
       // Filter by query (case insensitive)
-      final filteredMovies = uniqueMovies.values.where((movie) => 
-        movie.title.toLowerCase().contains(query.toLowerCase())
-      ).toList();
-      
-      emit(MoviesLoaded(
-        nowPlayingMovies: filteredMovies,
-        popularMovies: [],
-      ));
+      final filteredMovies =
+          uniqueMovies.values
+              .where(
+                (movie) =>
+                    movie.title.toLowerCase().contains(query.toLowerCase()),
+              )
+              .toList();
+
+      emit(MoviesLoaded(nowPlayingMovies: filteredMovies, popularMovies: []));
     } catch (e) {
       emit(MoviesError(message: e.toString()));
     }

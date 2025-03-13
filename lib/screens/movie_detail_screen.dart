@@ -59,7 +59,7 @@ class MovieDetailScreen extends StatelessWidget {
             ),
           ),
         ),
-        
+
         // Back Button
         Positioned(
           top: 40,
@@ -70,10 +70,7 @@ class MovieDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -104,18 +101,14 @@ class MovieDetailScreen extends StatelessWidget {
                   height: 180,
                   color: Colors.grey[800],
                   child: const Center(
-                    child: Icon(
-                      Icons.movie,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                    child: Icon(Icons.movie, color: Colors.white, size: 40),
                   ),
                 );
               },
             ),
           ),
           const SizedBox(width: 16),
-          
+
           // Movie Info
           Expanded(
             child: Column(
@@ -131,11 +124,7 @@ class MovieDetailScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 20,
-                    ),
+                    const Icon(Icons.star, color: Colors.amber, size: 20),
                     const SizedBox(width: 4),
                     Text(
                       movie.voteAverage.toStringAsFixed(1),
@@ -147,10 +136,7 @@ class MovieDetailScreen extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       'Release: ${movie.releaseDate}',
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 14,
-                      ),
+                      style: TextStyle(color: Colors.grey[400], fontSize: 14),
                     ),
                   ],
                 ),
@@ -183,10 +169,7 @@ class MovieDetailScreen extends StatelessWidget {
                         border: Border.all(color: Colors.white, width: 2),
                       ),
                       child: IconButton(
-                        icon: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
+                        icon: const Icon(Icons.add, color: Colors.white),
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -215,10 +198,7 @@ class MovieDetailScreen extends StatelessWidget {
         children: [
           const Text(
             'Synopsis',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Text(
@@ -237,7 +217,7 @@ class MovieDetailScreen extends StatelessWidget {
   Widget _buildSimilarMoviesSection() {
     // Mock data for similar movies based on current movie
     final List<Map<String, dynamic>> similarMovies = _getMockSimilarMovies();
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -245,10 +225,7 @@ class MovieDetailScreen extends StatelessWidget {
         children: [
           const Text(
             'Similar Movies',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -307,7 +284,7 @@ class MovieDetailScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   // Mock data for similar movies
   List<Map<String, dynamic>> _getMockSimilarMovies() {
     // For Dune: Part Two

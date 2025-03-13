@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: BlocProvider(
-        create: (context) => MoviesCubit(
-          apiService: MovieApiService(),
-        )..fetchMovies(),
+        create:
+            (context) =>
+                MoviesCubit(apiService: MovieApiService())..fetchMovies(),
         child: const HomeScreen(),
       ),
     );

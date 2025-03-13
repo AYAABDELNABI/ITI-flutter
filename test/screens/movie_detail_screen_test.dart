@@ -9,17 +9,18 @@ void main() {
     title: 'Test Movie',
     posterPath: '/test_poster_path.jpg',
     backdropPath: '/test_backdrop_path.jpg',
-    overview: 'This is a test movie overview that describes the plot of the movie.',
+    overview:
+        'This is a test movie overview that describes the plot of the movie.',
     voteAverage: 8.5,
     releaseDate: '2025-01-01',
   );
 
   group('MovieDetailScreen Widget Tests', () {
-    testWidgets('Movie detail screen displays movie information', (WidgetTester tester) async {
+    testWidgets('Movie detail screen displays movie information', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: MovieDetailScreen(movie: testMovie),
-        ),
+        MaterialApp(home: MovieDetailScreen(movie: testMovie)),
       );
 
       // Wait for any network images or animations to settle
@@ -27,22 +28,25 @@ void main() {
 
       // Verify that movie title is displayed
       expect(find.text('Test Movie'), findsOneWidget);
-      
+
       // Verify that the rating is displayed
       expect(find.text('8.5'), findsOneWidget);
-      
+
       // Verify that the release date is displayed
       expect(find.text('Release: 2025-01-01'), findsOneWidget);
-      
+
       // Verify that the overview is displayed
-      expect(find.text('This is a test movie overview that describes the plot of the movie.'), findsOneWidget);
+      expect(
+        find.text(
+          'This is a test movie overview that describes the plot of the movie.',
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('Watch Now button is displayed', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: MovieDetailScreen(movie: testMovie),
-        ),
+        MaterialApp(home: MovieDetailScreen(movie: testMovie)),
       );
 
       // Wait for any network images or animations to settle
@@ -52,11 +56,11 @@ void main() {
       expect(find.text('Watch Now'), findsOneWidget);
     });
 
-    testWidgets('Add to watchlist button is displayed', (WidgetTester tester) async {
+    testWidgets('Add to watchlist button is displayed', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: MovieDetailScreen(movie: testMovie),
-        ),
+        MaterialApp(home: MovieDetailScreen(movie: testMovie)),
       );
 
       // Wait for any network images or animations to settle
@@ -68,9 +72,7 @@ void main() {
 
     testWidgets('Synopsis section is displayed', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: MovieDetailScreen(movie: testMovie),
-        ),
+        MaterialApp(home: MovieDetailScreen(movie: testMovie)),
       );
 
       // Wait for any network images or animations to settle
@@ -80,11 +82,11 @@ void main() {
       expect(find.text('Synopsis'), findsOneWidget);
     });
 
-    testWidgets('Similar Movies section is displayed', (WidgetTester tester) async {
+    testWidgets('Similar Movies section is displayed', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: MovieDetailScreen(movie: testMovie),
-        ),
+        MaterialApp(home: MovieDetailScreen(movie: testMovie)),
       );
 
       // Wait for any network images or animations to settle
@@ -94,24 +96,28 @@ void main() {
       expect(find.text('Similar Movies'), findsOneWidget);
     });
 
-    testWidgets('Back button is displayed and works', (WidgetTester tester) async {
+    testWidgets('Back button is displayed and works', (
+      WidgetTester tester,
+    ) async {
       bool backButtonPressed = false;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Builder(
-              builder: (context) => TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MovieDetailScreen(movie: testMovie),
-                    ),
-                  );
-                },
-                child: const Text('Go to detail'),
-              ),
+              builder:
+                  (context) => TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => MovieDetailScreen(movie: testMovie),
+                        ),
+                      );
+                    },
+                    child: const Text('Go to detail'),
+                  ),
             ),
           ),
         ),
